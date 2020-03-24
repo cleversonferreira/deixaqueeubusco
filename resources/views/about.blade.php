@@ -105,8 +105,8 @@
             <div class="col-md-12">
                 <h1>Como Surgiu o Deixa Que Eu Busco</h1>
                 <p>
-                    Meu nome é Cleverson Franco, trabalho como Engenheiro de Software, e em meio a essa situação de quarentena observei muitas pessoas colocando cartazes 
-                    para ajudar vizinhos idosos com compras, então decidi transformar isso em um sistema <a href="https://github.com/cleversonferreira/deixaqueeubusco">Open Source</a> que pudesse centralizar todos os voluntários em um só lugar.
+                    Meu nome é <a target="_blank" href="https://www.facebook.com/CleFerreiraa">Cleverson</a>, trabalho como Engenheiro de Software, e em meio a essa situação de quarentena observei muitas pessoas colocando cartazes 
+                    para ajudar vizinhos idosos com compras, então decidi transformar isso em um sistema que pudesse centralizar todos os voluntários em um só lugar.
                 </p>
                 <hr>
                 <h2>Como Funciona</h2>
