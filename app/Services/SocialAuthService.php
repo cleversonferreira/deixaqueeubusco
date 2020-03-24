@@ -17,28 +17,27 @@ class SocialAuthService
 
         if ($account) {
             return $account->user;
-        } else {
-
-            $account = new SocialLogin([
-                'provider_user_id' => $providerUser->getId(),
-                'provider' => 'facebook'
-            ]);
-
-            $user = User::whereEmail($providerUser->getEmail())->first();
-
-            if (!$user) {
-
-                $user = User::create([
-                    'email' => $providerUser->getEmail(),
-                    'name' => $providerUser->getName(),
-                    'password' => md5(rand(1, 9999)),
-                ]);
-            }
-
-            $account->user()->associate($user);
-            $account->save();
-
-            return $user;
         }
+
+        $account = new SocialLogin([
+            'provider_user_id' => $providerUser->getId(),
+            'provider' => 'facebook'
+        ]);
+
+        $user = User::whereEmail($providerUser->getEmail())->first();
+
+        if (!$user) {
+
+            $user = User::create([
+                'email' => $providerUser->getEmail(),
+                'name' => $providerUser->getName(),
+                'password' => md5(rand(1, 9999)),
+            ]);
+        }
+
+        $account->user()->associate($user);
+        $account->save();
+
+        return $user;
     }
 }
