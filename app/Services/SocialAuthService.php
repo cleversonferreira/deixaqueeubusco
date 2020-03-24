@@ -14,12 +14,6 @@ class SocialAuthService
         $user = $this->getUserFromSocialAccount($providerUser);
         if ($user) return $user;
 
-
-
-        if (empty($providerUser->getEmail())) {
-            throw new InvalidArgumentException('Não foi possível detectar o e-mail');
-        }
-
         $user = User::whereEmail($providerUser->getEmail())->first();
 
         if (!$user) {
