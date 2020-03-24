@@ -4,7 +4,8 @@ namespace App\Services;
 
 use App\User;
 use App\SocialLogin;
-use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAuthService
@@ -18,17 +19,7 @@ class SocialAuthService
         $user = $this->getUserFromSocialAccount($providerUser);
         if ($user) return $user;
 
-        $user = User::whereEmail($providerUser->getEmail())->first();
-
-        if (!$user) {
-
-            $user = User::create([
-                'email' => $providerUser->getEmail(),
-                'name' => $providerUser->getName(),
-                'password' => md5(rand(1, 9999)),
-            ]);
-        }
-
+        $user = $this->getOrCreateUser($providerUser);
         $this->createSocialAccount($providerUser, $user);
 
         return $user;
@@ -63,5 +54,48 @@ class SocialAuthService
         ]);
         $account->user()->associate($user);
         $account->save();
+    }
+
+    /**
+     * @param ProviderUser $providerUser
+     * @return User|Builder|Model|object|null
+     */
+    private function getOrCreateUser(ProviderUser $providerUser)
+    {
+        $user = $this->getUserByEmail($providerUser->getEmail());
+        if ($user) return $user;
+
+        return $this->createUser($providerUser);
+    }
+
+    /**
+     * @param $email
+     * @return Builder|Model|object|null
+     */
+    private function getUserByEmail($email)
+    {
+        if (empty($email)) return null;
+
+        return User::query()
+            ->where('email', $email)
+            ->first();
+    }
+
+    /**
+     * @param ProviderUser $providerUser
+     * @return Builder|Model
+     */
+    private function createUser(ProviderUser $providerUser)
+    {
+        $email = $providerUser->getEmail() ?: $providerUser->getId() . '@facebook.com';
+        $name = $providerUser->getName() ?: 'Voluntário';
+        $password = md5(rand(1, 9999));
+
+        return User::query()
+            ->create([
+                'email' => $email,
+                'name' => $name,
+                'password' => $password,
+            ]);
     }
 }
