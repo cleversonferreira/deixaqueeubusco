@@ -12,20 +12,20 @@
 
         <!-- Primary Meta Tags -->
         <title>Deixa Que Eu Busco | Juntos Somos Mais Fortes</title>
-        <meta name="title" content="Deixa Que Eu Busco | Juntos Somos Mais Fortes">
+        <meta name="title" content="Deixa Que Eu Busco | Sobre">
         <meta name="description" content="Cadastre-se e fique a disposição de pessoas próximas que estão no grupo de risco do Covid-19. Um simples gesto pode fazer toda diferença.">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://deixaqueeubusco.com.br/">
-        <meta property="og:title" content="Deixa Que Eu Busco | Juntos Somos Mais Fortes">
+        <meta property="og:title" content="Deixa Que Eu Busco | Sobre">
         <meta property="og:description" content="Cadastre-se e fique a disposição de pessoas próximas que estão no grupo de risco do Covid-19. Um simples gesto pode fazer toda diferença.">
         <meta property="og:image" content="{{ secure_asset('images/logo.png') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="https://deixaqueeubusco.com.br/">
-        <meta property="twitter:title" content="Deixa Que Eu Busco | Juntos Somos Mais Fortes">
+        <meta property="twitter:title" content="Deixa Que Eu Busco | Sobre">
         <meta property="twitter:description" content="Cadastre-se e fique a disposição de pessoas próximas que estão no grupo de risco do Covid-19. Um simples gesto pode fazer toda diferença.">
         <meta property="twitter:image" content="{{ secure_asset('images/logo.png') }}">
 
@@ -51,21 +51,11 @@
             }
 
             header{
-                position: absolute;
                 width: 100%;
                 top: 0;
                 z-index: 999;
                 background: #ffffffe0;
                 padding: 0;
-            }
-
-            footer{
-                /* position: absolute; */
-                width: 100%;
-                bottom: 0;
-                z-index: 999;
-                background: #ffffffa6;
-                padding: 8px;
             }
 
             .nav-link {
@@ -112,40 +102,50 @@
                 </div>
             </header>
 
-            <div id="mapid"></div>
-    </div>
+            <div class="col-md-12">
+                <h1>Como Surgiu o Deixa Que Eu Busco</h1>
+                <p>
+                    Meu nome é Cleverson Franco, trabalho como Engenheiro de Software, e em meio a essa situação de quarentena observei muitas pessoas colocando cartazes 
+                    para ajudar vizinhos idosos com compras, então decidi transformar isso em um sistema <a href="https://github.com/cleversonferreira/deixaqueeubusco">Open Source</a> que pudesse centralizar todos os voluntários em um só lugar.
+                </p>
+                <hr>
+                <h2>Como Funciona</h2>
+                <h3>Voluntários</h3>
+                <img class="img-fluid img-thumbnail" src="{{ asset('images/voluntarios.png') }}" alt="">
+                <h3>Idosos</h3>
+                <img class="img-fluid img-thumbnail" src="{{ asset('images/idosos.png') }}" alt="">
+                <hr>
+                <h2>Voluntários do Projeto</h2>
+                <p>Os voluntários abaixo ajudaram o projeto de forma incrível, fazendo ele criar uma identidade e se tornar melhor.</p>
+                <br>
+                <h3><strong><a target="_blank" href="https://www.facebook.com/tarcisio.z.ferraz">Tarcisio Ferraz</a></strong></h3>
+                <h4>Engenheiro de Software</h4>
+                <p>Ajudou imensamente em melhorias e correções de código</p>
+                <br>
+                <h3><strong><a target="_blank" href="https://www.facebook.com/gr.guireis">Guilherme Dos Reis</a></strong></h3>
+                <h4>Designer</h4>
+                <p>Fez um trabalho incrível criando uma logomarca para o projeto</p>
+                <br>
+                <h3><strong><a target="_blank" href="https://www.facebook.com/evellyn.bz">Evellyn Zimmermann</a></strong></h3>
+                <h4>Designer</h4>
+                <p>Criou banners que ajudaram imensamente na divulgação e propagação do projeto</p>
+                <br>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+            </div>
+        </div>
 
-    <script>
-        var map = L.map('mapid').setView([-25.3526692,-48.8001958], 8);
-        mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
-        
-        var planes = <?php echo json_encode($data); ?>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-        for (var i = 0; i < planes.length; i++) {
-			marker = new L.marker([planes[i]['lat'],planes[i]['long']])
-                .bindPopup("<b>"+planes[i]['user']['name']+"</b><br/>"+planes[i]['neighborhood']+" - "+planes[i]['city']+"<br/>"+planes[i]['whatsapp']+"<br>")
-				.addTo(map);
-		}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161551353-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        L.tileLayer(
-            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; ' + mapLink + ' Contributors',
-                maxZoom: 18,
-            }).addTo(map);
-    </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161551353-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-161551353-1');
-    </script>
+            gtag('config', 'UA-161551353-1');
+        </script>
 
     </body>
 </html>

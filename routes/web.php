@@ -19,6 +19,11 @@ Route::get('/politica', function () {
     return view('politica');
 });
 
+Route::get('/sobre', function () {
+    return view('about');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
