@@ -14,10 +14,7 @@ class SocialAuthService
         $user = $this->getUserFromSocialAccount($providerUser);
         if ($user) return $user;
 
-        $account = new SocialLogin([
-            'provider_user_id' => $providerUser->getId(),
-            'provider' => 'facebook'
-        ]);
+
 
         if (empty($providerUser->getEmail())) {
             throw new InvalidArgumentException('Não foi possível detectar o e-mail');
@@ -34,8 +31,7 @@ class SocialAuthService
             ]);
         }
 
-        $account->user()->associate($user);
-        $account->save();
+        $this->createSocialAccount($providerUser, $user);
 
         return $user;
     }
@@ -51,5 +47,19 @@ class SocialAuthService
         if (is_null($account)) return null;
 
         return $account->user;
+    }
+
+    /**
+     * @param ProviderUser $providerUser
+     * @param User $user
+     */
+    private function createSocialAccount($providerUser, $user)
+    {
+        $account = new SocialLogin([
+            'provider_user_id' => $providerUser->getId(),
+            'provider' => 'facebook'
+        ]);
+        $account->user()->associate($user);
+        $account->save();
     }
 }
