@@ -9,7 +9,7 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAuthService
 {
-    public function createOrGetUser(ProviderUser $providerUser)
+    public function getSocialUser(ProviderUser $providerUser)
     {
         $account = SocialLogin::whereProvider('facebook')
             ->whereProviderUserId($providerUser->getId())
