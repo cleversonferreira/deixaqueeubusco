@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\User;
 use App\SocialLogin;
+use InvalidArgumentException;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAuthService
@@ -23,6 +24,10 @@ class SocialAuthService
             'provider_user_id' => $providerUser->getId(),
             'provider' => 'facebook'
         ]);
+
+        if (empty($providerUser->getEmail())) {
+            throw new InvalidArgumentException('Não foi possível detectar o e-mail');
+        }
 
         $user = User::whereEmail($providerUser->getEmail())->first();
 
