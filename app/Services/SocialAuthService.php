@@ -12,6 +12,7 @@ class SocialAuthService
     {
         $account = SocialLogin::whereProvider('facebook')
             ->whereProviderUserId($providerUser->getId())
+            ->with('user')
             ->first();
 
         if ($account) {
