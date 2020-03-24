@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Socialite;
+use Exception;
+use Laravel\Socialite\Facades\Socialite;
 use App\Services\SocialAuthService;
 
 class SocialAuthController extends Controller
@@ -15,9 +15,13 @@ class SocialAuthController extends Controller
 
     public function callback(SocialAuthService $service)
     {
-    	$user = $service->createOrGetUser(Socialite::driver('facebook')->user());
-        auth()->login($user);
-        
+        try {
+            $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+            auth()->login($user);
+        } catch (Exception $exception) {
+            
+        }
+
         return redirect()->to('/home');
     }
 }
