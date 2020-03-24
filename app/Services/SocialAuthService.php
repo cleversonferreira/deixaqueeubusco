@@ -9,6 +9,10 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAuthService
 {
+    /**
+     * @param ProviderUser $providerUser
+     * @return User|Builder|Model|object|null
+     */
     public function getSocialUser(ProviderUser $providerUser)
     {
         $user = $this->getUserFromSocialAccount($providerUser);
@@ -30,6 +34,10 @@ class SocialAuthService
         return $user;
     }
 
+    /**
+     * @param ProviderUser $providerUser
+     * @return User|null
+     */
     private function getUserFromSocialAccount(ProviderUser $providerUser)
     {
         $account = SocialLogin::query()
