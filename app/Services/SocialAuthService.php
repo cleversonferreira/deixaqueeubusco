@@ -11,14 +11,8 @@ class SocialAuthService
 {
     public function getSocialUser(ProviderUser $providerUser)
     {
-        $account = SocialLogin::whereProvider('facebook')
-            ->whereProviderUserId($providerUser->getId())
-            ->with('user')
-            ->first();
-
-        if ($account) {
-            return $account->user;
-        }
+        $user = $this->getUserFromSocialAccount($providerUser);
+        if ($user) return $user;
 
         $account = new SocialLogin([
             'provider_user_id' => $providerUser->getId(),
@@ -44,5 +38,18 @@ class SocialAuthService
         $account->save();
 
         return $user;
+    }
+
+    private function getUserFromSocialAccount(ProviderUser $providerUser)
+    {
+        $account = SocialLogin::query()
+            ->where('provider_user_id', $providerUser->getId())
+            ->where('provider', 'facebook')
+            ->with('user')
+            ->first();
+
+        if (is_null($account)) return null;
+
+        return $account->user;
     }
 }
