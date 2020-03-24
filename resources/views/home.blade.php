@@ -82,7 +82,7 @@
                 <div class="inner">
                     <nav class="nav nav-masthead justify-content-center">
                     <div class="col-sm-12 col-md-3">
-                        <a class="nav-link" href="/"><img src="{{ asset('images/logo-2.png') }}" width="150" style="margin: 0 auto;display: table;" alt="Deixa Que Eu Busco"></a>
+                        <a class="nav-link" href="/"><img src="{{ secure_asset('images/logo-2.png') }}" width="150" style="margin: 0 auto;display: table;" alt="Deixa Que Eu Busco"></a>
                     </div>
                     <div class="auth col-sm-12 col-md-2 offset-md-7">
                         <a class="nav-link" href="/sobre">Sobre</a>
