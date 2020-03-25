@@ -119,7 +119,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script>
-        var map = L.map('mapid').setView([-25.3526692,-48.8001958], 8);
+        var map = L.map('mapid').setView([-13.5430879,-54.5515994], 5);
         mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
         
         var planes = <?php echo json_encode($data); ?>

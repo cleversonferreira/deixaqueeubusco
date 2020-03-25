@@ -25,8 +25,8 @@ class DataController extends Controller
             $data = Data::where('id', '=', $request->get('id'))->first();
 
             if($data->cep != $request->get('cep')){
-                $endpoint = 'https://www.google.com/maps/place/' . $request->street . '+' .  $request->number . '+' .  $request->neighborhood . '+' .  $request->city . '+' .  $request->state;
-                $endpoint = str_replace(' ', '+', $endpoint);
+                $endpoint = 'https://www.google.com/maps/search/' . $request->street . '+' .  $request->number . '+' .  $request->neighborhood . '+' .  $request->city . '+' .  $request->state;
+                $endpoint = str_replace(' ', '%20', $endpoint);
 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $endpoint);
