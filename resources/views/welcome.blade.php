@@ -124,17 +124,8 @@
         
         var planes = <?php echo json_encode($data); ?>
 
-        var markerOptions = {
-            radius: 10,
-            fillColor: "#52B98C",
-            color: "#A9F6B2",
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 1
-        };
-
         for (var i = 0; i < planes.length; i++) {
-			marker = new L.circleMarker([planes[i]['lat'],planes[i]['long']],markerOptions)
+			marker = new L.marker([planes[i]['lat'],planes[i]['long']])
                 .bindPopup("<b>"+planes[i]['user']['name']+"</b><br/>"+planes[i]['neighborhood']+" - "+planes[i]['city']+"<br/>"+planes[i]['whatsapp']+"<br>")
 				.addTo(map);
 		}
