@@ -127,7 +127,7 @@
 
         for (var i = 0; i < planes.length; i++) {
 			marker = new L.marker([planes[i]['lat'],planes[i]['long']])
-                .bindPopup("<b>"+planes[i]['user']['name']+"</b><br/>"+planes[i]['neighborhood']+" - "+planes[i]['city']+"<br/><a href='tel:"+planes[i]['whatsapp'].replace(/[^\d]/g, '')+"'>"+planes[i]['whatsapp']+"</a><br/><a href='https://wa.me/55"+planes[i]['whatsapp'].replace(/[^\d]/g, '')+"?text=Olá,%20te%20encontrei%20no%20Deixa%20Que%20Eu%20Busco,%20você%20poderia me ajudar?'><i class='fa fa-whatsapp' style='font-size: 20px;color: green;'></i> Chamar no WhatsApp</a><br>")
+                .bindPopup("<b>"+planes[i]['user']['name']+"</b><br/>"+planes[i]['neighborhood']+" - "+planes[i]['city']+"<br/><a href='tel:0"+planes[i]['whatsapp'].replace(/[^\d]/g, '')+"'>"+planes[i]['whatsapp']+"</a><br/><a href='https://wa.me/55"+planes[i]['whatsapp'].replace(/[^\d]/g, '')+"?text=Olá,%20te%20encontrei%20no%20Deixa%20Que%20Eu%20Busco,%20você%20poderia me ajudar?'><i class='fa fa-whatsapp' style='font-size: 20px;color: green;'></i> Chamar no WhatsApp</a><br>")
 				.addTo(map);
 		}
 
