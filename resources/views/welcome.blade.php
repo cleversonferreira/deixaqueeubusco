@@ -83,6 +83,10 @@
                 text-align: center;
             }
 
+            .leaflet-popup-content{
+                text-align: center;
+            }
+
         </style>
     </head>
 
