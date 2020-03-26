@@ -36,6 +36,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Styles -->
         <style>
@@ -126,7 +127,7 @@
 
         for (var i = 0; i < planes.length; i++) {
 			marker = new L.marker([planes[i]['lat'],planes[i]['long']])
-                .bindPopup("<b>"+planes[i]['user']['name']+"</b><br/>"+planes[i]['neighborhood']+" - "+planes[i]['city']+"<br/>"+planes[i]['whatsapp']+"<br>")
+                .bindPopup("<b>"+planes[i]['user']['name']+"</b><br/>"+planes[i]['neighborhood']+" - "+planes[i]['city']+"<br/><a href='tel:+550"+planes[i]['whatsapp'].replace(/[^\d]/g, '')+"'>"+planes[i]['whatsapp']+"</a><br/><a href='https://wa.me/"+planes[i]['whatsapp'].replace(/[^\d]/g, '')+"?text=Olá,%20te%20encontrei%20no%20Deixa%20Que%20Eu%20Busco,%20você%20poderia me ajudar?'><i class='fa fa-whatsapp' style='font-size: 20px;color: green;'></i> Chamar no WhatsApp</a><br>")
 				.addTo(map);
 		}
 
